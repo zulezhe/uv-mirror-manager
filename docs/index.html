@@ -1,0 +1,239 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVM - UV镜像源管理工具 | 一键切换PyPI镜像源</title>
+    <meta name="description" content="UVM是一款专为uv包管理器设计的PyPI镜像源管理工具，支持一键切换清华、阿里云、中科大等国内镜像源，自动测速推荐最快镜像。pip install ouvm 即可使用。">
+    <meta name="keywords" content="uv, pypi, mirror, pip, python, 镜像源, 清华源, 阿里云源, nrm, package manager">
+    <meta name="author" content="zulezhe">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="UVM - UV镜像源管理工具">
+    <meta property="og:description" content="一键切换PyPI镜像源，支持测速推荐。pip install ouvm">
+    <meta property="og:url" content="https://zulezhe.github.io/uv-mirror-manager/">
+    <meta property="og:site_name" content="UVM">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="UVM - UV镜像源管理工具">
+    <meta name="twitter:description" content="一键切换PyPI镜像源，支持测速推荐。pip install ouvm">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zulezhe.github.io/uv-mirror-manager/">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card: #161b22;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --green: #3fb950;
+            --orange: #d29922;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 8px; }
+        .hero h1 span { color: var(--accent); }
+        .hero .tagline { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 32px; }
+        .badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+        .badges img { height: 24px; }
+
+        .install-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: inline-block;
+            padding: 12px 24px;
+            font-family: 'SFMono-Regular', Consolas, monospace;
+            font-size: 1rem;
+        }
+        .install-box code { color: var(--green); }
+
+        /* Section */
+        section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        .feature {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .feature h3 { color: var(--accent); margin-bottom: 8px; font-size: 1.1rem; }
+        .feature p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Commands */
+        .cmd-table { width: 100%; border-collapse: collapse; }
+        .cmd-table th, .cmd-table td {
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .cmd-table th { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .cmd-table code {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--green);
+        }
+
+        /* Mirrors */
+        .mirror-table { width: 100%; border-collapse: collapse; }
+        .mirror-table th, .mirror-table td {
+            text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border);
+        }
+        .mirror-table th { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; }
+        .mirror-table td { font-size: 0.9rem; }
+        .mirror-table td code { font-size: 0.82rem; color: var(--accent); }
+
+        /* Links */
+        .links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .links a {
+            color: var(--accent);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: border-color 0.2s;
+        }
+        .links a:hover { border-color: var(--accent); }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <h1><span>uvm</span></h1>
+            <p class="tagline">UV 镜像源管理工具 - 一键管理 uv 的 PyPI 镜像源</p>
+            <div class="badges">
+                <img src="https://badge.fury.io/py/ouvm.svg" alt="PyPI version">
+                <img src="https://img.shields.io/pypi/pyversions/ouvm.svg" alt="Python versions">
+                <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
+            </div>
+            <div class="install-box">
+                $ pip install <code>ouvm</code>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <section>
+            <h2>功能特性</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>快速切换</h3>
+                    <p>一键切换国内外 PyPI 镜像源，告别手动编辑配置文件</p>
+                </div>
+                <div class="feature">
+                    <h3>速度测试</h3>
+                    <p>自动测试镜像源响应时间并排序，推荐最快镜像源</p>
+                </div>
+                <div class="feature">
+                    <h3>自定义源</h3>
+                    <p>支持添加公司/学校内部镜像源，灵活管理</p>
+                </div>
+                <div class="feature">
+                    <h3>跨平台</h3>
+                    <p>完美支持 Windows、macOS、Linux 系统</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commands -->
+        <section>
+            <h2>常用命令</h2>
+            <table class="cmd-table">
+                <thead>
+                    <tr><th>命令</th><th>短命令</th><th>说明</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>uvm list</code></td><td><code>uvm ls</code></td><td>列出所有镜像源</td></tr>
+                    <tr><td><code>uvm use tsinghua</code></td><td><code>uvm u tsinghua</code></td><td>切换到清华源</td></tr>
+                    <tr><td><code>uvm test</code></td><td><code>uvm t</code></td><td>测速并排序</td></tr>
+                    <tr><td><code>uvm current</code></td><td><code>uvm cur</code></td><td>查看当前镜像源</td></tr>
+                    <tr><td><code>uvm reset</code></td><td><code>uvm r</code></td><td>恢复官方源</td></tr>
+                    <tr><td><code>uvm add &lt;name&gt; &lt;url&gt;</code></td><td><code>uvm a</code></td><td>添加自定义镜像源</td></tr>
+                    <tr><td><code>uvm remove &lt;name&gt;</code></td><td><code>uvm rm</code></td><td>删除自定义镜像源</td></tr>
+                    <tr><td><code>uvm search &lt;query&gt;</code></td><td><code>uvm s</code></td><td>搜索镜像源</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Built-in Mirrors -->
+        <section>
+            <h2>内置镜像源</h2>
+            <table class="mirror-table">
+                <thead>
+                    <tr><th>名称</th><th>URL</th><th>地区</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>official</td><td><code>https://pypi.org/simple</code></td><td>US</td></tr>
+                    <tr><td>tsinghua</td><td><code>https://pypi.tuna.tsinghua.edu.cn/simple</code></td><td>CN</td></tr>
+                    <tr><td>aliyun</td><td><code>https://mirrors.aliyun.com/pypi/simple</code></td><td>CN</td></tr>
+                    <tr><td>douban</td><td><code>https://pypi.doubanio.com/simple</code></td><td>CN</td></tr>
+                    <tr><td>ustc</td><td><code>https://mirrors.ustc.edu.cn/pypi/web/simple</code></td><td>CN</td></tr>
+                    <tr><td>tencent</td><td><code>https://mirrors.cloud.tencent.com/pypi/simple</code></td><td>CN</td></tr>
+                    <tr><td>huawei</td><td><code>https://repo.huaweicloud.com/repository/pypi/simple</code></td><td>CN</td></tr>
+                    <tr><td>netease</td><td><code>https://mirrors.163.com/pypi/simple</code></td><td>CN</td></tr>
+                    <tr><td>sjtu</td><td><code>https://mirror.sjtu.edu.cn/pypi/simple</code></td><td>CN</td></tr>
+                    <tr><td>zju</td><td><code>https://mirrors.zju.edu.cn/pypi/simple</code></td><td>CN</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Links -->
+        <section>
+            <h2>链接</h2>
+            <div class="links">
+                <a href="https://github.com/zulezhe/uv-mirror-manager" target="_blank">GitHub</a>
+                <a href="https://pypi.org/project/ouvm/" target="_blank">PyPI</a>
+                <a href="https://github.com/zulezhe/uv-mirror-manager/blob/main/README.md" target="_blank">中文文档</a>
+                <a href="https://github.com/zulezhe/uv-mirror-manager/blob/main/README_EN.md" target="_blank">English Docs</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>UVM - UV Mirror Manager | <a href="https://github.com/zulezhe/uv-mirror-manager/blob/main/LICENSE" style="color: var(--text-muted);">MIT License</a></p>
+    </footer>
+</body>
+</html>

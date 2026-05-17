@@ -1,0 +1,105 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+.benchmarks/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre / pytype
+.pyre/
+.pytype/
+
+# IDE
+.idea/
+.vscode/
+
+# Project specific
+.uvm-cache.json
+uv.toml.bak
+
+# AI assistant local configs
+.claude/
+.roo/
+AGENTS.md
+
+# Local development scripts
+dev.bat
+dev.env
+dev.py
+dev.sh
+quick-test.py
+
+# Local development docs (keep only core docs in repo)
+DEV.md
+DEV_README.md
+INSTALL.md
+PUBLISH.md
+USER_GUIDE.md
+info/
+使用文档.md
+测试报告.md
+测试方案.md
+需求.md
+
+# OS files
+Thumbs.db
+.DS_Store
